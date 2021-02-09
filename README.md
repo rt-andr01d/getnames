@@ -34,3 +34,8 @@ where 'fn' is the first name and 'ln' is the last name
 <li><fn>@companyemail.com
 <ln><fi>@companyemail.com
 ```
+
+## WARNING
+
+As of writing, this dork does return some linkedin job titles in the same format that we look for
+the employee names. it is recommended to use a combination of grep + sed to remove these.
