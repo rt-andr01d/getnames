@@ -17,3 +17,20 @@ emails in:
 python3 getnames.py -c "Company Name" -e "<fn>.<ln>@companyemail.com"
 ```
 
+The email format can be configured in multiple ways:
+
+```
+where 'fn' is the first name and 'ln' is the last name
+<fn>.<ln>@companyemail.com
+<fi>.<ln>@companyemail.com
+<fn>.<li>@companyemail.com
+<ln>.<fn>@companyemail.com
+<li>.<fn>@companyemail.com
+<ln>.<fi>@companyemail.com
+<fn><ln>@companyemail.com
+<fi><ln>@companyemail.com
+<fn><li>@companyemail.com
+<ln><fn>@companyemail.com
+<li><fn>@companyemail.com
+<ln><fi>@companyemail.com
+```
