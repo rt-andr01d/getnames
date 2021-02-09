@@ -17,7 +17,6 @@ args = parser.parse_args()
 if args.outfile:
   outfile = open(sys.argv[6], "w")
 
-#file = open(sys.argv[2], "r")
 
 fname = ""
 lname = ""
