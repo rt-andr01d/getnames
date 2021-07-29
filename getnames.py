@@ -32,12 +32,26 @@ def returnformat(fname, lname):
       if format[3] == "li":
         email = fname + format[2] + lname[0] + format[4]
         return email
+    if format[1] == "fi":
+      if format[3] == "ln":
+        email = fname[0] + format[2] + lname + format[4]
+        return email
+      if format[3] == "li":
+        email = fname[0] + format[2] + lname[0] + format[4]
+        return email
     if format[1] == "ln":
       if format[3] == "fn":
         email = lname + format[2] + fname + format[4]
         return email
       if format[3] == "fi":
         email = lname + format[2] + fname[0] + format[4]
+        return email
+    if format[1] == "li":
+      if format[3] == "fn":
+        email = lname[0] + format[2] + fname + format[4]
+        return email
+      if format[3] == "fi":
+        email = lname[0] + format[2] + fname[0] + format[4]
         return email
   else:
     if format[1] == "fn":
@@ -47,12 +61,26 @@ def returnformat(fname, lname):
       if format[3] == "li":
         email = fname + lname[0] + format[4]
         return email
+    if format[1] == "fi":
+      if format[3] == "ln":
+        email = fname[0] + lname + format[4]
+        return email
+      if format[3] == "li":
+        email = fname[0] + lname[0] + format[4]
+        return email
     if format[1] == "ln":
       if format[3] == "fn":
         email = lname + fname + format[4]
         return email
       if format[3] == "fi":
-        email = lname + fname[0]
+        email = lname + fname[0] + format[4]
+        return email
+    if format[1] == "li":
+      if format[3] == "fn":
+        email = lname[0] + fname + format[4]
+        return email
+      if format[3] == "fi":
+        email = lname[0] + fname[0] + format[4]
         return email
 
 # need to get rid of common false positives
