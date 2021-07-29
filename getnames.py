@@ -55,23 +55,36 @@ def returnformat(fname, lname):
         email = lname + fname[0]
         return email
 
+# need to get rid of common false positives
+def prune(email):
+  bnames = ['Manager', 'manager', 'Analyst', 'analyst', 'Tax', 'tax', 'Partner', 'partner', 'United', 'united', 'State', 'state', 'Region', 'region', 'Consult', 'consult', 'Officer', 'officer', 'Audit', 'audit', 'Service', 'service']
+  for bword in bnames:
+    if(bword in email):
+      return
+
+  if args.outfile:
+    outfile.write(email)
+    outfile.write('\n')
+  else:
+    print(pruned_email)
+
 
 def main():
-  url = 'https://google.com/search?q=site:linkedin.com%20"' + sys.argv[2] + '"&num=100'
-  request_result=requests.get( url ) 
-  soup = bs4.BeautifulSoup(request_result.text, "html.parser") 
-  output = re.findall(r'[a-zA-Z]{1,7} [a-zA-Z]{1,7} -', soup.prettify())
+  # adding a loop to run throuhg multiple pages of google results
+  i=0
+  while(i<500):
+    url = 'https://google.com/search?q=site:linkedin.com%20"' + sys.argv[2] + '"&num=100&start=' + str(i) + ''
+    request_result=requests.get( url ) 
+    soup = bs4.BeautifulSoup(request_result.text, "html.parser") 
+    output = re.findall(r'[a-zA-Z]{1,7} [a-zA-Z]{1,7} -', soup.prettify())
 
-  for line in output:
-    splitline = line.split(" ")
-    fname = splitline[0]
-    lname = splitline[1]
-    email = returnformat(fname, lname)
-    if args.outfile:
-      outfile.write(email)
-      outfile.write('\n')
-    else:
-      print(email)
+    for line in output:
+      splitline = line.split(" ")
+      fname = splitline[0]
+      lname = splitline[1]
+      email = returnformat(fname, lname)
+      prune(email)
+    i=i+100
 
 
 if __name__ == "__main__":
